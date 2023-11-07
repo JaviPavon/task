@@ -10,6 +10,7 @@ class Task(models.Model):
 
     fecha_creacion = models.DateTimeField(default=timezone.now)
 
+    hecho = models.BooleanField(default=False)
 
     def __str__(self):
 

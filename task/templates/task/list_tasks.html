@@ -1,7 +1,7 @@
 {% extends 'task/base.html' %}
 
 <div>
-    <h1><a href="/">Django Girls Blog</a></h1>
+    <h1><a href="/">Tareas Pavón</a></h1>
 </div>
 {% block content %}
 {% for task in tasks %}
@@ -9,7 +9,7 @@
 <div>
     <p> publicado: {{ task.fecha_creacion }}</p>
     <h2><a href="">{{ task.title }}</a></h2>
-    <p>{{ task.descripcion|linebreaksbr }}</p>
+    <p>{{ task.descripcion|linebreaksbr }} {{ models.hecho|yesno:"Si,No" }}</p>
 </div>
 
 {% endfor %}
