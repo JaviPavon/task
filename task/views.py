@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.utils import timezone
 
@@ -13,7 +13,7 @@ def list_tasks(request):
         form=TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('task_list')
+            return redirect('list_tasks')
     else:
         form=TaskForm()
     return render(request, 'task/list_tasks.html', {'tasks': tasks, 'form':form})

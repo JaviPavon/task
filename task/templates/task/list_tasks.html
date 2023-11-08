@@ -25,11 +25,12 @@
 {% for task in tasks %}
 
 
-<div>
-    <p> publicado: {{ task.fecha_creacion }}</p>
-    <h2><a href="">{{ task.title }}</a></h2>
-    <p>{{ task.descripcion|linebreaksbr }} {{ models.hecho|yesno:"Si,No" }}</p>
-</div>
+    <div>
+        <p> publicado: {{ task.fecha_creacion }}</p>
+        <h2><a href="">{{ task.title }}</a></h2>
+        <p>{{ task.descripcion|linebreaksbr }} {{ models.hecho|yesno:"Hecho,Pendiente" }}</p>
+    </div>
+
 
 {% endfor %}
 </body>
