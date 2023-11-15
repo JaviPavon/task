@@ -6,7 +6,7 @@ from django.utils import timezone
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = {'title','descripcion'}
+        fields = {'title','descripcion','hecho'}
 
 
 # class TaskForm(forms.Form):

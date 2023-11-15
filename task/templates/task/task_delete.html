@@ -17,10 +17,6 @@
                 <div class="card-body">
                     <h2 class="card-title"><a href="{% url 'task_details' pk=task.pk %}">{{ task.title }} </a></h2>{{ task.hecho|yesno:"Hecho,Pendiente" }}
                     <p class="card-text">{{ task.descripcion|linebreaksbr }} </p>
-                <div class="row offset-3">
-                    <div class="col-1"><a href="{% url 'task_edition' pk=task.pk %}" class="btn btn-primary">Editar</a></div>
-                    <div class="col-6 offset-2"> <a href="{% url 'delete' pk=task.pk %}" class="btn btn-danger"><i class="bi bi-trash3"></i>Eliminar</a></div>
-                </div>
                 </div>
                 <div class="card-footer text-body-secondary">
                     <p> publicado: {{ task.fecha_creacion }}</p>
@@ -28,6 +24,13 @@
             </div>
         </div>
     </div>
-    <a href="{% url 'list_tasks' %}">Volver</a>
+        <form method="POST">
+            {% csrf_token %}
+            
+
+            <h2>Are you sure that you want to delete the task?</h2>
+                <button type="submit" class="btn btn-danger">Sí, seguro</button>
+                <a class="btn btn-primary" href="{% url 'list_tasks' %}">Cancel</a>
+          </form>
 </body>
 </html>

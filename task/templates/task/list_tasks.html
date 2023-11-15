@@ -16,23 +16,27 @@
         </div>
     </div>
 
+<div class="row pt-3">    
 {% for task in tasks %}
 
-    <div class="card text-center">
-        <div class="card-body">
-            <h2 class="card-title"><a href="{% url 'task_details' pk=task.pk %}">{{ task.title }}</a></h2>
-            <p class="card-text">{{ task.descripcion|linebreaksbr }} {{ models.hecho|yesno:"Hecho,Pendiente" }}</p>
-          <div class="row offset-5">
-            <div class="col-1"><a href="{% url 'task_edition' pk=task.pk %}" class="btn btn-primary">Editar</a></div>
-            <div class="col-3"> <a class="btn btn-danger"><i class="bi bi-trash3"></i>Eliminar</a></div>
-            
-          </div>
+        <div class="col-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h2 class="card-title"><a href="{% url 'task_details' pk=task.pk %}">{{ task.title }} </a></h2>{{ task.hecho|yesno:"Hecho,Pendiente" }}
+                    <p class="card-text">{{ task.descripcion|linebreaksbr }} </p>
+                  <div class="row offset-3">
+                    <div class="col-1"><a href="{% url 'task_edition' pk=task.pk %}" class="btn btn-primary">Editar</a></div>
+                    <div class="col-6 offset-2"> <a href="{% url 'delete' pk=task.pk %}" class="btn btn-danger"><i class="bi bi-trash3"></i>Eliminar</a></div>
+                  </div>
+                </div>
+                <div class="card-footer text-body-secondary">
+                    <p> publicado: {{ task.fecha_creacion }}</p>
+                </div>
+            </div>
         </div>
-        <div class="card-footer text-body-secondary">
-            <p> publicado: {{ task.fecha_creacion }}</p>
-        </div>
-      </div>
+    
 
 
 {% endfor %}
+</div>
 </body>

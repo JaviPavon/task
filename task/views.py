@@ -1,3 +1,5 @@
+from pyexpat.errors import messages
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 
 from django.utils import timezone
@@ -45,6 +47,7 @@ class TaskDetalles(View):
     def get(self, request, pk):
         task = Task.objects.get(id=pk)
         return render(request, 'task/task_details.html', {'task': task})
+
     
 class CreacionTask(View):
     
@@ -100,6 +103,16 @@ class EditarTask(View):
             return redirect('list_tasks')
         return render(request, self.nombre_template, {'form':form, 'task': task})
 
+class EliminarTask(View):
+    nombre_template = 'task/task_delete.html'
+    def get(self, request, pk):
+        task = Task.objects.get(id=pk)
+        return render(request, self.nombre_template, {'task': task})
+    def post(self,  request,pk):
+        task = get_object_or_404(Task, id=pk)
+        task.delete()
+        return redirect('list_tasks')
+    
 # def list_tasks(request):
 
 #     tasks = Task.objects.filter(fecha_creacion__lte=timezone.now()).order_by('fecha_creacion')
